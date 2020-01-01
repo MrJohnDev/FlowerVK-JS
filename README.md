@@ -6,6 +6,12 @@
 
 # FlowerVK
 
+## How to install
+Required [NodeJS](https://nodejs.org) & [React](https://reactjs.org).
+
+Use this to clone repository<br>
+``git clone https://github.com/lonadels/FlowerVK-JS.git && cd FlowerVK-JS``
+
 ## How to start work with app
 
 Go to created folder and run:
