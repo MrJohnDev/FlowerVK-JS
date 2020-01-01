@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import connect from '@vkontakte/vk-connect';
 
 import { ConfigProvider, Root, View } from '@vkontakte/vkui';
-import { Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
-import { Button, Placeholder } from '@vkontakte/vkui';
+import { FixedLayout, Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
+import { PromoBanner, Button, Placeholder } from '@vkontakte/vkui';
 
 import Icon56ServicesOutline from '@vkontakte/icons/dist/56/services_outline';
 import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
