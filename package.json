@@ -16,6 +16,8 @@
     "react-scripts": "^3.3.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.8.2",
+    "@material-ui/icons": "^4.5.1",
     "@vkontakte/icons": "^1.13.0",
     "@vkontakte/vk-connect": "^1.7.2",
     "@vkontakte/vkui": "^2.34.1",

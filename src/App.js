@@ -14,7 +14,16 @@ export default class App extends Component {
 		activeView: "main",
 		activePanel: "home",
 
-		user: null
+		user: null,
+		promoBannerProps: {
+			title: 'SwiftSoft',
+			domain: 'vk.com',
+			ctaText: 'Перейти',
+			advertisingLabel: 'Реклама',
+			iconLink: 'https://sun9-45.userapi.com/c857216/v857216612/347b0/4IwKHKOgK-U.jpg?ava=1',
+			description: 'Группа разработчиков приложения',
+			ageRestriction: 0
+		}
 	}
 
 	async fetchData() {
@@ -44,16 +53,9 @@ export default class App extends Component {
 								icon={<Icon56RecentOutline />}
 								action={<Button level="outline" onClick={() => this.setState({ activeView: "dialogStats" })} size="l">Тестовый модуль</Button>}
 								stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
-						</Panel>
-					</View>
-					<View id="dialogStats" activePanel="2">
-						<Panel id="2">
-							<PanelHeader
-								left={<PanelHeaderBack onClick={() => this.setState({ activeView: "main" })} />}
-							>Тестовый модуль</PanelHeader>
-							<Placeholder
-								icon={<Icon56ServicesOutline />}
-								stretched>Модуль в разработке</Placeholder>
+							<FixedLayout vertical="bottom">
+								<PromoBanner bannerData={this.state.promoBannerProps} />
+							</FixedLayout>
 						</Panel>
 					</View>
 				</Root>
