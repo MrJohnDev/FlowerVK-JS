@@ -16,16 +16,6 @@ export default class App extends Component {
 		activePanel: "1",
 
 		user: null,
-
-		ads: true,
-		promoBannerProps: {
-			title: 'SwiftSoft',
-			domain: 'Группа разработчиков приложения',
-			ctaText: 'Перейти',
-			advertisingLabel: 'Реклама',
-			iconLink: 'https://sun9-45.userapi.com/c857216/v857216612/347b0/4IwKHKOgK-U.jpg?ava=1',
-			trackingLink: 'https://vk.com/swiftof',
-		},
 		clicked: 0
 	}
 
@@ -61,9 +51,6 @@ export default class App extends Component {
 									icon={<Icon56RecentOutline />}
 									stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
 							</div>
-							{this.state.ads && <FixedLayout vertical="bottom">
-								<PromoBanner onClose={() => this.setState({ ads: false })} bannerData={this.state.promoBannerProps} />
-							</FixedLayout>}
 						</Panel>
 						<Panel id="2">
 							<Placeholder
