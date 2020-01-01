@@ -8,11 +8,12 @@ import { PromoBanner, Button, Placeholder } from '@vkontakte/vkui';
 import Icon56ServicesOutline from '@vkontakte/icons/dist/56/services_outline';
 import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
 
-export default class App extends Component {
+import Icon28BugOutline from '@vkontakte/icons/dist/28/bug_outline';
 
+export default class App extends Component {
 	state = {
 		activeView: "main",
-		activePanel: "home",
+		activePanel: "1",
 
 		user: null,
 
@@ -24,7 +25,8 @@ export default class App extends Component {
 			advertisingLabel: 'Реклама',
 			iconLink: 'https://sun9-45.userapi.com/c857216/v857216612/347b0/4IwKHKOgK-U.jpg?ava=1',
 			trackingLink: 'https://vk.com/swiftof',
-		}
+		},
+		clicked: 0
 	}
 
 	async fetchData() {
@@ -48,14 +50,25 @@ export default class App extends Component {
 		return (
 			<ConfigProvider isWebView={true}>
 				<Root activeView={this.state.activeView}>
-					<View id="main" activePanel="1">
+					<View id="main" activePanel={this.state.activePanel}>
 						<Panel id="1">
-							<Placeholder
-								icon={<Icon56RecentOutline />}
-								stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
+							<div onMouseDown={() => {
+								let clicked = this.state.clicked;
+								++clicked < 5 || this.setState({ activePanel: "2" });
+								this.setState({ clicked });
+							}}>
+								<Placeholder
+									icon={<Icon56RecentOutline />}
+									stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
+							</div>
 							{this.state.ads && <FixedLayout vertical="bottom">
 								<PromoBanner onClose={() => this.setState({ ads: false })} bannerData={this.state.promoBannerProps} />
 							</FixedLayout>}
+						</Panel>
+						<Panel id="2">
+							<Placeholder
+								icon={<Icon28BugOutline height={56} width={56} />}
+								stretched>Режим отладки</Placeholder>
 						</Panel>
 					</View>
 				</Root>
