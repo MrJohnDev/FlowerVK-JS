@@ -22,7 +22,6 @@ export default class App extends Component {
 			advertisingLabel: 'Реклама',
 			iconLink: 'https://sun9-45.userapi.com/c857216/v857216612/347b0/4IwKHKOgK-U.jpg?ava=1',
 			description: 'Группа разработчиков приложения',
-			ageRestriction: 0
 		}
 	}
 
