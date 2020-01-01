@@ -50,7 +50,6 @@ export default class App extends Component {
 						<Panel id="1">
 							<Placeholder
 								icon={<Icon56RecentOutline />}
-								action={<Button level="outline" onClick={() => this.setState({ activeView: "dialogStats" })} size="l">Тестовый модуль</Button>}
 								stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
 							<FixedLayout vertical="bottom">
 								<PromoBanner bannerData={this.state.promoBannerProps} />
