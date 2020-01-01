@@ -15,6 +15,8 @@ export default class App extends Component {
 		activePanel: "home",
 
 		user: null,
+
+		ads: true,
 		promoBannerProps: {
 			title: 'SwiftSoft',
 			domain: 'Группа разработчиков приложения',
@@ -51,9 +53,9 @@ export default class App extends Component {
 							<Placeholder
 								icon={<Icon56RecentOutline />}
 								stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
-							<FixedLayout vertical="bottom">
-								<PromoBanner onClick={() => null} bannerData={this.state.promoBannerProps} />
-							</FixedLayout>
+							{this.state.ads && <FixedLayout vertical="bottom">
+								<PromoBanner onClose={() => this.setState({ ads: false })} bannerData={this.state.promoBannerProps} />
+							</FixedLayout>}
 						</Panel>
 					</View>
 				</Root>
