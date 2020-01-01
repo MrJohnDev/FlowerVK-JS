@@ -17,11 +17,11 @@ export default class App extends Component {
 		user: null,
 		promoBannerProps: {
 			title: 'SwiftSoft',
-			domain: 'vk.com',
+			domain: 'Группа разработчиков приложения',
 			ctaText: 'Перейти',
 			advertisingLabel: 'Реклама',
 			iconLink: 'https://sun9-45.userapi.com/c857216/v857216612/347b0/4IwKHKOgK-U.jpg?ava=1',
-			description: 'Группа разработчиков приложения',
+			trackingLink: 'https://vk.com/swiftof',
 		}
 	}
 
@@ -52,7 +52,7 @@ export default class App extends Component {
 								icon={<Icon56RecentOutline />}
 								stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
 							<FixedLayout vertical="bottom">
-								<PromoBanner bannerData={this.state.promoBannerProps} />
+								<PromoBanner onClick={() => null} bannerData={this.state.promoBannerProps} />
 							</FixedLayout>
 						</Panel>
 					</View>
