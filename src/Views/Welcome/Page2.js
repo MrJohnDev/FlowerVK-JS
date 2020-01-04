@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import { PanelHeader, Placeholder, Button } from '@vkontakte/vkui';
 
-export default class Main extends Component {
+export default class Page2 extends Component {
     render() {
         return (
             <div>
@@ -12,11 +12,11 @@ export default class Main extends Component {
                     FlowerVK
                 </PanelHeader>
                 <Placeholder
-                    action={<Button onClick={() => this.props.changePanel("Page2")} size="l">Далее</Button>}
-                    title="Добро пожаловать!"
+                    action={<Button onClick={() => this.props.changePanel("Page3")} size="l">Далее</Button>}
+                    title="Но это не всё!"
                     stretched
                 >
-                    <b>FlowerVK</b> - мини-приложение, <br />которое позволит Вам смотреть <b>статистику</b> Ваших диалогов
+                    В приложении есть и другие полезные функции, например, <b>очистка стены</b>
                 </Placeholder>
             </div>
         )

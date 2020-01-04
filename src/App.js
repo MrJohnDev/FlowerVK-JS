@@ -5,10 +5,11 @@ import { ConfigProvider, Root, View, Panel } from '@vkontakte/vkui';
 
 import MainView from './Views/MainView'
 import MessagesStats from './Views/MessagesStats'
+import Welcome from './Views/Welcome'
 
 export default class App extends Component {
 
-	Views = [MainView, MessagesStats];
+	Views = [MainView, MessagesStats, Welcome];
 
 	state = {
 		activeView: null,
@@ -18,7 +19,7 @@ export default class App extends Component {
 	constructor() {
 		super();
 
-		this.state.activeView = "MainView";
+		this.state.activeView = "Welcome";
 
 		this.fetchData();
 	}
@@ -53,7 +54,7 @@ export default class App extends Component {
 								{ id: view.constructor.name, activePanel: `${view.constructor.name}_` + (this.state.activePanels[view.constructor.name] ?? "Main") },
 
 								view.panels.map((p) => {
-									this.state.activePanels.push({ [p.name]: "Main" })
+									this.state.activePanels[p.name] = "Main";
 
 									return createElement(
 										Panel,
