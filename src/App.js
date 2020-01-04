@@ -11,15 +11,15 @@ export default class App extends Component {
 	Views = [MainView, MessagesStats];
 
 	state = {
-		activeView: "MainView",
-		activePanels: {
-			MainView: "Main",
-			MessagesStats: "Main"
-		}
+		activeView: null,
+		activePanels: []
 	}
 
 	constructor() {
 		super();
+
+		this.state.activeView = "MainView";
+
 		this.fetchData();
 	}
 
@@ -35,28 +35,32 @@ export default class App extends Component {
 				<Root activeView={this.state.activeView}>
 					{
 						this.Views.map((v) => {
-							let view = new v(
-								(e) => { this.setState({ activeView: e }) },
-								(e) => {
-									//console.log([[view.constructor.name], e])
+							let view = new v({
+								view: (e) => { this.setState({ activeView: e }) },
+								panel: (e) => {
 									this.setState({
 										activePanels: {
 											[view.constructor.name]: e
 										}
 									})
-								}
+								},
+								user: this.user
 
-							);
+							});
 
 							return createElement(
 								View,
-								{ id: view.constructor.name, activePanel: `${view.constructor.name}_` + this.state.activePanels[view.constructor.name] },
+								{ id: view.constructor.name, activePanel: `${view.constructor.name}_` + (this.state.activePanels[view.constructor.name] ?? "Main") },
 
-								view.panels.map((p) => createElement(
-									Panel,
-									{ id: `${view.constructor.name}_${p.name}` },
-									view[p.name]
-								))
+								view.panels.map((p) => {
+									this.state.activePanels.push({ [p.name]: "Main" })
+
+									return createElement(
+										Panel,
+										{ id: `${view.constructor.name}_${p.name}` },
+										view[p.name]
+									)
+								})
 
 
 							)
