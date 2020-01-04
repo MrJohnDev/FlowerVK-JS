@@ -12,15 +12,12 @@ export default class App extends Component {
 	Views = [MainView, MessagesStats, Welcome];
 
 	state = {
-		activeView: null,
+		activeView: "Welcome",
 		activePanels: []
 	}
 
 	constructor() {
 		super();
-
-		this.state.activeView = "Welcome";
-
 		this.fetchData();
 	}
 
@@ -54,8 +51,6 @@ export default class App extends Component {
 								{ id: view.constructor.name, activePanel: `${view.constructor.name}_` + (this.state.activePanels[view.constructor.name] ?? "Main") },
 
 								view.panels.map((p) => {
-									this.state.activePanels[p.name] = "Main";
-
 									return createElement(
 										Panel,
 										{ id: `${view.constructor.name}_${p.name}` },
