@@ -1,63 +1,67 @@
-import React, { Component } from 'react';
+import React, { Component, createElement } from 'react';
 import connect from '@vkontakte/vk-connect';
 
-import { ConfigProvider, Root, View } from '@vkontakte/vkui';
-import { FixedLayout, Panel, PanelHeader, PanelHeaderBack } from '@vkontakte/vkui';
-import { PromoBanner, Button, Placeholder } from '@vkontakte/vkui';
+import { ConfigProvider, Root, View, Panel } from '@vkontakte/vkui';
 
-import Icon56ServicesOutline from '@vkontakte/icons/dist/56/services_outline';
-import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
-
-import Icon28BugOutline from '@vkontakte/icons/dist/28/bug_outline';
+import MainView from './Views/MainView'
+import MessagesStats from './Views/MessagesStats'
 
 export default class App extends Component {
-	state = {
-		activeView: "main",
-		activePanel: "1",
 
-		user: null,
-		clicked: 0
+	Views = [MainView, MessagesStats];
+
+	state = {
+		activeView: "MainView",
+		activePanels: {
+			MainView: "Main",
+			MessagesStats: "Main"
+		}
+	}
+
+	constructor() {
+		super();
+		this.fetchData();
 	}
 
 	async fetchData() {
-		//console.log(await connect.sendPromise("VKWebAppGetAuthToken", { "app_id": 7265077, "scope": "messages" }));
-
-
 		const user = await connect.sendPromise('VKWebAppGetUserInfo');
 		this.setState({ user });
-
-
-		/*const data = await connect.sendPromise("VKWebAppCallAPIMethod", {
-			"method": "messages.getConversations", "request_id": "32test", "params": { "user_ids": "1", "v": "5.103", "access_token": "your_token" }
-		});
-		console.log(data);*/
 	}
 
 	render() {
 
-		this.fetchData();
-
 		return (
 			<ConfigProvider isWebView={true}>
 				<Root activeView={this.state.activeView}>
-					<View id="main" activePanel={this.state.activePanel}>
-						<Panel id="1">
-							<div onMouseDown={() => {
-								let clicked = this.state.clicked;
-								++clicked < 5 || this.setState({ activePanel: "2" });
-								this.setState({ clicked });
-							}}>
-								<Placeholder
-									icon={<Icon56RecentOutline />}
-									stretched>Скоро здесь будет<br /> новое мини-приложение!</Placeholder>
-							</div>
-						</Panel>
-						<Panel id="2">
-							<Placeholder
-								icon={<Icon28BugOutline height={56} width={56} />}
-								stretched>Режим отладки</Placeholder>
-						</Panel>
-					</View>
+					{
+						this.Views.map((v) => {
+							let view = new v(
+								(e) => { this.setState({ activeView: e }) },
+								(e) => {
+									//console.log([[view.constructor.name], e])
+									this.setState({
+										activePanels: {
+											[view.constructor.name]: e
+										}
+									})
+								}
+
+							);
+
+							return createElement(
+								View,
+								{ id: view.constructor.name, activePanel: `${view.constructor.name}_` + this.state.activePanels[view.constructor.name] },
+
+								view.panels.map((p) => createElement(
+									Panel,
+									{ id: `${view.constructor.name}_${p.name}` },
+									view[p.name]
+								))
+
+
+							)
+						})
+					}
 				</Root>
 			</ConfigProvider>
 		);

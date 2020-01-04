@@ -12,6 +12,7 @@ import App from './App';
 
 import '@vkontakte/vkui/dist/vkui.css';
 
+
 // import registerServiceWorker from './sw';
 
 // Init VK  Mini App
@@ -20,7 +21,7 @@ connect.subscribe(({ detail: { type, data } }) => {
     switch (type) {
         case "VKWebAppUpdateConfig":
             const schemeAttribute = document.createAttribute('scheme');
-            schemeAttribute.value = data.scheme ? data.scheme : 'bright_light';
+            schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
             document.body.attributes.setNamedItem(schemeAttribute);
             break;
         default:
