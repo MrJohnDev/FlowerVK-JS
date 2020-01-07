@@ -1,35 +1,27 @@
 import 'core-js/features/map';
 import 'core-js/features/set';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-
-//import connect from '@vkontakte/vkui-connect-mock';
 import connect from '@vkontakte/vk-connect';
-
 import App from './App';
-
 import '@vkontakte/vkui/dist/vkui.css';
-
-
 // import registerServiceWorker from './sw';
 
 // Init VK  Mini App
 connect.send('VKWebAppInit');
+
 connect.subscribe(({ detail: { type, data } }) => {
     switch (type) {
-        case "VKWebAppUpdateConfig":
+        case 'VKWebAppUpdateConfig':
             const schemeAttribute = document.createAttribute('scheme');
             schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
             document.body.attributes.setNamedItem(schemeAttribute);
             break;
         default:
-        //console.log({ type, data });
+            break;
 
     }
 });
-
 // Если вы хотите, чтобы ваше веб-приложение работало в оффлайне и загружалось быстрее,
 // расскомментируйте строку с registerServiceWorker();
 // Но не забывайте, что на данный момент у технологии есть достаточно подводных камней

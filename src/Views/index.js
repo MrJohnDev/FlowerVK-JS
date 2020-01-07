@@ -8,9 +8,9 @@ export default class Views {
     }
 
     set Panels(Panels) {
-        Panels.map((c) => {
+        Panels.map((c, i) => {
             this.panels.push(c);
-            this[c.name] = React.createElement(c, { changeView: this.props.view, changePanel: this.props.panel, user: this.props.user })
+            this[c.name] = React.createElement(c, { key: i, changeView: this.props.view, changePanel: this.props.panel, token: this.props.token })
             return true;
         });
     }
